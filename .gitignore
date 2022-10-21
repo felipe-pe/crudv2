@@ -1,0 +1,4 @@
+env/
+**/__pycache__/
+
+MyProj/book/__pycache__/admin.cpython-310.pyc
