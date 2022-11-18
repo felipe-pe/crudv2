@@ -1,0 +1,98 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block body %}
+{% if user.username == "administrador" or user.username == "desenvolvedor" %}
+<div class="content-wrapper">
+
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0"></h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm">
+          <div class="card card-dark">
+            <div class="card-header">
+              <h5 class="m-0">Criar - partida</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">criar um voo de partida</h6>
+              <p class="card-text"> </p>
+              <a href="{% url 'criar_voo_partida' %}" class="btn btn-dark">Acessar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card card-dark">
+            <div class="card-header">
+              <h5 class="m-0">Criar - chegada</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">criar um voo de chegada</h6>
+
+              <p class="card-text"> </p>
+              <a href="{% url 'criar_voo_chegada' %}" class="btn btn-dark">Acessar</a>
+            </div>
+          </div>
+        </div>
+      <div class="col-sm">
+        <div class="card card-dark">
+          <div class="card-header">
+            <h5 class="m-0">Editar</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">editar um voo</h6>
+            <p class="card-text"></p>
+            <a href="{% url 'editar' %}" class="btn btn-dark">Acessar</a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /.row -->
+    <div class="row">
+      <div class="col-sm">
+        <div class="card card-dark">
+          <div class="card-header">
+            <h5 class="m-0">Visualizar todos</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">ver detalhes de todos os voos</h6>
+            <p class="card-text"> </p>
+            <a href="{% url 'voos' %}" class="btn btn-dark">Acessar</a>
+          </div>
+        </div>
+      </div><!-- /.col-md-6 -->
+      <div class="col-sm">
+        <div class="card card-dark">
+          <div class="card-header">
+            <h5 class="m-0">Deletar</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">excluir um voo</h6>
+            <p class="card-text"> </p>
+
+            <a href="{% url 'deletar' %}" class="btn btn-dark">Acessar</a>
+          </div>
+        </div>
+      </div><!-- /.col-md-6 -->
+    </div> <!-- /.row -->
+    <div class="row">
+    </div> <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>
+{% else %}
+{% include 'base/error.html' %}
+{% endif %}
+{% endblock body %}

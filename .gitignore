@@ -1,4 +1,4 @@
-env/
-**/__pycache__/
-
-MyProj/book/__pycache__/admin.cpython-310.pyc
+#ignore ALL files in ANY directory named temp
+__pycache__/
+/env/
+/controle_voos/db.sqlite3

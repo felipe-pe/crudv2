@@ -1,0 +1,73 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block body %}
+{% if user.username == "administrador" or user.username == "desenvolvedor" %}
+  <div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0"></h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+  <div class="content">
+    <!-- general form elements -->
+    <div class="card card-dark">
+        <div class="card-header">
+          <h3 class="card-title">Criação de voo</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="POST" action="{% url 'criar_voo_chegada' %}" >
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group">
+              <label for="codigo">Código de voo</label>
+              <input name="codigo"type="text" class="form-control" id="codigo" placeholder="AAA111" maxlength="6">
+            </div>
+            <div class="form-group">
+              <label for="companhia">Companhia Aerea</label>
+              <input name="companhia" type="text" class="form-control" id="companhia" placeholder="Companhia"required>
+            </div>
+            <div class="form-group">
+              <label for="local">Local de origem e destino</label>
+              <input name="local" type="text" class="form-control" id="local" placeholder="chegada/Partida" required>
+            </div>
+            <div class="form-group">
+              <label for="horario_previsto">Horário de chegada previsto</label>
+              <input name="horario_previsto" type="time" class="form-control" id="horario_previsto">
+            </div>
+            <div class="form-group">
+              <label for="data">Data de chegada</label>
+              <input name="data" type="date" class="form-control" id="data">
+            </div>
+          </div>
+          <!-- /.card-body -->
+          
+          <div class="card-footer">
+            <button type="submit" class="btn btn-dark">Criar voo</button>
+            {% if obj %}
+            <p style="color:green">Voo criado com sucesso</p>
+            {% endif %} 
+            {% if error %}
+            <p style="color:red">Erro. Verifique a formatação dos dados. {{error}}</p>
+            {% endif %} 
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+  </div>
+  <!-- /.content -->
+</div>
+{% else %}
+  {% include 'base/error.html' %}
+{% endif %}
+{% endblock body %}
