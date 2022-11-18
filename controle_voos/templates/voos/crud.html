@@ -5,19 +5,16 @@
 {% if user.username == "administrador" or user.username == "desenvolvedor" %}
 <div class="content-wrapper">
 
-  <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0"></h1>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
   <div class="content">
     <div class="container-fluid">
       <div class="row">
@@ -58,7 +55,7 @@
           </div>
         </div>
       </div>
-    </div> <!-- /.row -->
+    </div>
     <div class="row">
       <div class="col-sm">
         <div class="card card-dark">
@@ -71,7 +68,7 @@
             <a href="{% url 'voos' %}" class="btn btn-dark">Acessar</a>
           </div>
         </div>
-      </div><!-- /.col-md-6 -->
+      </div>
       <div class="col-sm">
         <div class="card card-dark">
           <div class="card-header">
@@ -84,13 +81,13 @@
             <a href="{% url 'deletar' %}" class="btn btn-dark">Acessar</a>
           </div>
         </div>
-      </div><!-- /.col-md-6 -->
-    </div> <!-- /.row -->
+      </div>
+    </div>
     <div class="row">
-    </div> <!-- /.row -->
-  </div><!-- /.container-fluid -->
+    </div> 
+  </div>
 </div>
-<!-- /.content -->
+
 </div>
 {% else %}
 {% include 'base/error.html' %}

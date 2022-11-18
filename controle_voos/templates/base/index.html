@@ -17,18 +17,11 @@
   <!-- Bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-  <!-- Toastr -->
-  <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
 
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-  <!-- Bootstrap 4 -->
-  <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
   
   <script>
     $(function () {
@@ -43,28 +36,17 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{% static 'dist/img/logo_verde.png' %}" height="120" width="160">
-  </div>
 
-  <!-- Navbar -->
   {% include 'base/navbar.html' %}
-  <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-dark elevation-4">
     {% include 'base/sidebar.html' %}
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   {% block body %}
   {% endblock body %}
-  <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-light">
-    <!-- Control sidebar content goes here -->
     <div class="p-3">
       <h5>Controlador de conteúdo</h5>
       <div class="info-box">
@@ -90,9 +72,6 @@
       </div>
     </div>
   </aside>
-  <!-- /.control-sidebar -->
-
-  <!--Mensagens-->
   
     {% if messages %}
       {% for message in messages %}
@@ -103,13 +82,10 @@
           {% endif %}
       {% endfor %}
     {% endif %}
-  <!--/Mensagens-->
-
-  <!-- Main Footer -->
+  
   {% include 'base/footer.html' %}
 
 </div>
-<!-- ./wrapper -->
 </body>
 </html>
 {% else %}

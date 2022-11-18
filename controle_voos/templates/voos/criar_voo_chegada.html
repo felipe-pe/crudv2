@@ -5,27 +5,24 @@
 {% if user.username == "administrador" or user.username == "desenvolvedor" %}
   <div class="content-wrapper">
 
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
             <h1 class="m-0"></h1>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
+
   <div class="content">
-    <!-- general form elements -->
+
     <div class="card card-dark">
         <div class="card-header">
           <h3 class="card-title">Criação de voo</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
+
         <form method="POST" action="{% url 'criar_voo_chegada' %}" >
           {% csrf_token %}
           <div class="card-body">
@@ -50,7 +47,6 @@
               <input name="data" type="date" class="form-control" id="data">
             </div>
           </div>
-          <!-- /.card-body -->
           
           <div class="card-footer">
             <button type="submit" class="btn btn-dark">Criar voo</button>
@@ -63,9 +59,7 @@
           </div>
         </form>
       </div>
-      <!-- /.card -->
   </div>
-  <!-- /.content -->
 </div>
 {% else %}
   {% include 'base/error.html' %}
