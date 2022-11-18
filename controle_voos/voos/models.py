@@ -3,14 +3,14 @@ from django.db import models
 class companhia(models.Model) :
     id = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=200, null=False)
-    codigo = models.CharField(max_length=6, null=False)
+    code = models.CharField(max_length=6, null=False)
 
     class Meta:
         db_table = 'companhia'
 
 class Voo(models.Model) :
     id = models.IntegerField(primary_key=True)
-    codigo = models.CharField(max_length=6, blank=False, default='AAA111')
+    code = models.CharField(max_length=6, blank=False, default='AAA111')
     companhia = models.ForeignKey(companhia, on_delete=models.CASCADE)
     horario_previsto = models.TimeField(auto_now=False, auto_now_add=False)
     local = models.CharField(max_length=200, null=False)

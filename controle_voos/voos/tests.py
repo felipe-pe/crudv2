@@ -7,7 +7,7 @@ import datetime
 class CompanhiaAereaTest(TestCase):
   @classmethod
   def setUpTestData(cls):
-      companhia.objects.create(nome='gol',codigo='GO')
+      companhia.objects.create(nome='gol',code='GO')
       companhia.objects.create(nome='latam')
   def test_companhia_id_1(self):
       companhia_1 = companhia.objects.get(nome='gol')
@@ -18,12 +18,12 @@ class CompanhiaAereaTest(TestCase):
   def test_companhia_codigo_1(self):
       #https://stackoverflow.com/questions/51148893/object-created-even-if-field-was-required
       companhia_2 = companhia.objects.get(nome='latam')
-      self.assertEqual(companhia_2.codigo, '')
+      self.assertEqual(companhia_2.code, '')
   def test_update_codigo(self):
       companhia_1 = companhia.objects.get(nome='gol')
-      companhia_1.codigo = 'GL'
+      companhia_1.code = 'GL'
       companhia_1.save()
-      self.assertEqual(companhia_1.codigo, 'GL')
+      self.assertEqual(companhia_1.code, 'GL')
 
 class VooModelTest(TestCase):
   @classmethod
@@ -31,12 +31,12 @@ class VooModelTest(TestCase):
     companhia.objects.create(nome='gol')
     companhia_1 = companhia.objects.get(nome='gol')
     horario = datetime.time(10,30) #10 horas e 30 min
-    Voo.objects.create(companhia=companhia_1, horario_previsto=horario, local='GRU', codigo='AAA111')
+    Voo.objects.create(companhia=companhia_1, horario_previsto=horario, local='GRU', code='AAA111')
 
   def test_voo_codigo(self):
     companhia_1 = companhia.objects.get(nome='gol')
     voo_1 = Voo.objects.get(companhia=companhia_1)
-    self.assertEqual(voo_1.codigo, 'AAA111')
+    self.assertEqual(voo_1.code, 'AAA111')
 
   def test_voo_id(self):
     companhia_1 = companhia.objects.get(nome='gol')

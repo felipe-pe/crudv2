@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('nome', models.CharField(max_length=200)),
-                ('codigo', models.CharField(max_length=6)),
+                ('code', models.CharField(max_length=6)),
             ],
             options={
                 'db_table': 'companhia',
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             name='Voo',
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('codigo', models.CharField(default='AAA111', max_length=6)),
+                ('code', models.CharField(default='AAA111', max_length=6)),
                 ('horario_previsto', models.TimeField()),
                 ('local', models.CharField(max_length=200)),
                 ('data', models.DateField(blank=True, null=True, verbose_name='Date')),

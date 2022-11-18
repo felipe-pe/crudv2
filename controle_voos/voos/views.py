@@ -44,7 +44,7 @@ def status(request):
     if request.method == 'POST':
         try:
             print(request.POST)
-            voo_instance = get_object_or_404(Voo, codigo=request.POST['codigo'])
+            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
         except Exception as error:
             messages.error(request, "Código de voo inválido, tente novamente.")
             return HttpResponseRedirect('/status')
@@ -104,7 +104,7 @@ def criar_voo_partida(request):
     if request.method == 'POST':
         try:
             try:
-                get_object_or_404(Voo, codigo=request.POST['codigo'])   
+                get_object_or_404(Voo, code=request.POST['code'])   
                 raise MultipleObjectsReturned
             except MultipleObjectsReturned as error:
                 print(error)
@@ -127,7 +127,7 @@ def criar_voo_partida(request):
             horario_stripped = datetime.strptime(request.POST['horario_previsto'], "%H:%M")
             companhia_instance = get_object_or_404(companhia, nome=request.POST['companhia'])
             voo = {
-                'codigo': request.POST['codigo'],
+                'code': request.POST['code'],
                 'companhia': companhia_instance,
                 'local': request.POST['local'],
                 'horario_previsto': horario_stripped,
@@ -166,7 +166,7 @@ def criar_voo_chegada(request):
     if request.method == 'POST':
         try:
             try:
-                get_object_or_404(Voo, codigo=request.POST['codigo'])   
+                get_object_or_404(Voo, code=request.POST['code'])   
                 raise MultipleObjectsReturned
             except MultipleObjectsReturned as error:
                 print(error)
@@ -189,7 +189,7 @@ def criar_voo_chegada(request):
             horario_stripped = datetime.strptime(request.POST['horario_previsto'], "%H:%M")
             companhia_instance = get_object_or_404(companhia, nome=request.POST['companhia'])
             voo = {
-                'codigo': request.POST['codigo'],
+                'code': request.POST['code'],
                 'companhia': companhia_instance,
                 'local': request.POST['local'],
                 'horario_previsto': horario_stripped,
@@ -228,7 +228,7 @@ def criar_voo_chegada(request):
 def editar(request): 
     if request.method == 'POST':
         try:
-            voo_instance = get_object_or_404(Voo, codigo=request.POST['codigo'])
+            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
             if request.POST['companhia'] != '':
                 companhia_instance = get_object_or_404(companhia, nome=request.POST['companhia'])
                 voo_instance.companhia = companhia_instance
@@ -265,7 +265,7 @@ def ler_voo(request):
     context = {}
     if request.method == 'POST':
         try:
-            voo_instance = get_object_or_404(Voo, codigo=request.POST['codigo'])
+            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
             context = {
                 'voo': voo_instance
             }
@@ -284,8 +284,8 @@ def deletar(request):
     if request.method == 'POST':
         form = CodigoForm(request.POST)
         if form.is_valid():
-            codigo = form.cleaned_data['codigo']
-            voo = Voo.objects.filter(codigo=codigo)
+            code = form.cleaned_data['code']
+            voo = Voo.objects.filter(code=code)
             if not voo:
                 messages.error(request, "Código de voo inválido, voo não deletado.")
             else:
