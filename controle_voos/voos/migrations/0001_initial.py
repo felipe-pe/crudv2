@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Voo',
+            name='voo',
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('code', models.CharField(default='AAA111', max_length=6)),

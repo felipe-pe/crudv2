@@ -9,10 +9,10 @@ from django.utils.translation import gettext_lazy as _
 from django.shortcuts import get_object_or_404
 
 from voos.forms import CodigoForm
-from voos.models import Voo
+from voos.models import voo
 from django.core.exceptions import MultipleObjectsReturned
 
-from voos.models import companhia, Voo, partida, chegada
+from voos.models import companhia, voo, partida, chegada
 from django.utils import timezone
 from datetime import datetime
 
@@ -38,13 +38,13 @@ def gera_relatorio(request):
     
 class voos(ListView):
     template_name = "voos/voos.html"
-    model = Voo
+    model = voo
 
 def status(request):
     if request.method == 'POST':
         try:
             print(request.POST)
-            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
+            voo_instance = get_object_or_404(voo, code=request.POST['code'])
         except Exception as error:
             messages.error(request, "Código de voo inválido, tente novamente.")
             return HttpResponseRedirect('/status')
@@ -56,7 +56,7 @@ def status(request):
                     if request.POST['statusform'] == 'VO':
                         partida_instance.real = timezone.now()
                     partida_instance.save()
-                    messages.success(request, "Voo atualizado com sucesso.")
+                    messages.success(request, "voo atualizado com sucesso.")
                 else:
                     messages.error(request, "Status inválido, tente novamente.")
             except Exception as error:
@@ -69,7 +69,7 @@ def status(request):
                         }
                         record = partida(**partida)
                         record.save()
-                        messages.success(request, "Voo atualizado com sucesso.")
+                        messages.success(request, "voo atualizado com sucesso.")
                     else:
                         messages.error(request, "Status inválido, tente novamente.")
                         return HttpResponseRedirect('/status')
@@ -80,7 +80,7 @@ def status(request):
                     chegada_instance.status = request.POST['statusform']
                     chegada_instance.real = timezone.now()
                     chegada_instance.save()
-                    messages.success(request, "Voo atualizado com sucesso.")
+                    messages.success(request, "voo atualizado com sucesso.")
                 else:
                     messages.error(request, "Status inválido, tente novamente.")
             except Exception as error:
@@ -93,7 +93,7 @@ def status(request):
                         }
                         record = chegada(**chegada)
                         record.save()
-                        messages.success(request, "Voo atualizado com sucesso.")
+                        messages.success(request, "voo atualizado com sucesso.")
                     else:
                         messages.error(request, "Status inválido, tente novamente.")
                         return HttpResponseRedirect('/status')
@@ -104,7 +104,7 @@ def criar_voo_partida(request):
     if request.method == 'POST':
         try:
             try:
-                get_object_or_404(Voo, code=request.POST['code'])   
+                get_object_or_404(voo, code=request.POST['code'])   
                 raise MultipleObjectsReturned
             except MultipleObjectsReturned as error:
                 print(error)
@@ -116,7 +116,7 @@ def criar_voo_partida(request):
             except Exception as error:
                 a = True
                 print(error.__class__.__name__)
-                if "No Voo matches the given query." in str(error):
+                if "No voo matches the given query." in str(error):
                     a = False
                 context = {
                     'obj': False,
@@ -134,7 +134,7 @@ def criar_voo_partida(request):
                 'data' : request.POST['data'],
             }
 
-            record = Voo(**voo)
+            record = voo(**voo)
             record.save()
             print(voo)
             context = {
@@ -166,7 +166,7 @@ def criar_voo_chegada(request):
     if request.method == 'POST':
         try:
             try:
-                get_object_or_404(Voo, code=request.POST['code'])   
+                get_object_or_404(voo, code=request.POST['code'])   
                 raise MultipleObjectsReturned
             except MultipleObjectsReturned as error:
                 print(error)
@@ -178,7 +178,7 @@ def criar_voo_chegada(request):
             except Exception as error:
                 a = True
                 print(error.__class__.__name__)
-                if "No Voo matches the given query." in str(error):
+                if "No voo matches the given query." in str(error):
                     a = False
                 context = {
                     'obj': False,
@@ -196,7 +196,7 @@ def criar_voo_chegada(request):
                 'data' : request.POST['data'],
             }
 
-            record = Voo(**voo)
+            record = voo(**voo)
             record.save()
             print(voo)
             context = {
@@ -228,7 +228,7 @@ def criar_voo_chegada(request):
 def editar(request): 
     if request.method == 'POST':
         try:
-            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
+            voo_instance = get_object_or_404(voo, code=request.POST['code'])
             if request.POST['companhia'] != '':
                 companhia_instance = get_object_or_404(companhia, nome=request.POST['companhia'])
                 voo_instance.companhia = companhia_instance
@@ -244,7 +244,7 @@ def editar(request):
             }
         except Exception as error:
             print(error.__class__.__name__)
-            if "No Voo matches the given query." in str(error):
+            if "No voo matches the given query." in str(error):
                 error = "Esse código de voo não existe."
             if "No companhia matches the given query." in str(error):
                 error = "Essa companhia aérea não existe."
@@ -265,7 +265,7 @@ def ler_voo(request):
     context = {}
     if request.method == 'POST':
         try:
-            voo_instance = get_object_or_404(Voo, code=request.POST['code'])
+            voo_instance = get_object_or_404(voo, code=request.POST['code'])
             context = {
                 'voo': voo_instance
             }
@@ -273,7 +273,7 @@ def ler_voo(request):
         except Exception as error:
             print(error.__class__.__name__)
             print(error)
-            if "No Voo matches the given query." in str(error):
+            if "No voo matches the given query." in str(error):
                 messages.error(request, "Código de voo inválido, voo não existe.")
             return render(request, 'voos/ler_voo.html', context)
     else:
@@ -285,12 +285,12 @@ def deletar(request):
         form = CodigoForm(request.POST)
         if form.is_valid():
             code = form.cleaned_data['code']
-            voo = Voo.objects.filter(code=code)
+            voo = voo.objects.filter(code=code)
             if not voo:
                 messages.error(request, "Código de voo inválido, voo não deletado.")
             else:
                 voo.delete()
-                messages.success(request, "Voo deletado com sucesso.")
+                messages.success(request, "voo deletado com sucesso.")
             return HttpResponseRedirect('/deletar')
     else:
         return render(request, 'voos/deletar.html')
