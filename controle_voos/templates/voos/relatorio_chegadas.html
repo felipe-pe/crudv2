@@ -3,61 +3,6 @@
 
 {% block body %}
 {% if user.username == "gerente" or user.username == "desenvolvedor" %}
-  <div class="content-wrapper">
 
-    <div class="content-header">
-        <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1 class="m-0"></h1>
-            </div>
-        </div>
-        </div>
-    </div>
-
-      <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Relatório de chegadas</h3>
-            </div>
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Código de voo</th>
-                    <th>Horário Real</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for chegada in chegadas %}
-                  <tr>
-                    <td> {{ chegada.id }} </td>
-                    <td> {{ chegada.voo.code }} </td>
-                    <td> {{ chegada.real }} </td>
-                    <td> {{ chegada.data }} </td>
-                    <td> {{ chegada.status }}</td>
-                  </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Código de voo</th>
-                    <th>Horário Real</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-       </div>
-    </div>
-     
-{% else %}
-  {% include 'base/error.html' %}
 {% endif %} 
 {% endblock body %}

@@ -3,64 +3,6 @@
 
 {% block body %}
 {% if user.username == "gerente" or user.username == "desenvolvedor" %}
-<div class="content-wrapper">
 
-  <div class="content-header">
-      <div class="container-fluid">
-      <div class="row mb-2">
-          <div class="col-sm-6">
-          <h1 class="m-0"></h1>
-          </div>
-      </div>
-      </div>
-  </div>
-
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm">
-        <div class="card card-dark">
-          <div class="card-header">
-            <h5 class="m-0">Partidas</h5>
-          </div>
-          <div class="card-body">
-            <h6 class="card-title">Gerar relatório de partidas</h6>
-
-            <p class="card-text"> </p> 
-             <a href="{% url 'relatorio_partidas' %}" class="btn btn-dark">Acessar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-          <div class="card card-dark">
-            <div class="card-header">
-              <h5 class="m-0">Chegadas</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Gerar relatório de chegadas por companhia aerea</h6>
-              <p class="card-text"></p>
-              <a href="{% url 'relatorio_chegadas' %}" class="btn btn-dark">Acessar</a>
-            </div>
-          </div>
-        </div>  
-        <div class="col-sm">
-          <div class="card card-dark">
-            <div class="card-header">
-              <h5 class="m-0">Movimentação</h5>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">Gerar relatório de movimentação de voos em um período</h6>
-              <p class="card-text"> </p>
-              
-            </div>
-          </div>
-        </div>
-    </div> 
-  </div>
-</div>
-</div>
-    
-{% else %}
-  {% include 'base/error.html' %}
 {% endif %} 
 {% endblock body %}

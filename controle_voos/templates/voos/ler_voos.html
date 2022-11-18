@@ -3,51 +3,5 @@
 
 {% block body %}
 {% if user.username == "administrador" or user.username == "desenvolvedor" %}
-  <div class="content-wrapper">
 
-
-    <div class="content-header">
-        <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1 class="m-0">Leitura de voo</h1>
-            </div>
-        </div>
-    </div>
-
-  <div class="content">
- <div class="card card-dark">
-  <div class="card-header">
-    <h3 class="card-title">Leitura de voo</h3>
-  </div>
-  <form method="POST" action="{% url 'ler_voo' %}" >
-    {% csrf_token %}
-    <div class="card-body">
-      <div class="form-group">
-        <label for="code">Código de voo</label>
-        <input name="code"type="text" class="form-control" id="code" placeholder="AAA111">
-      </div>
-    </div>
-    
-    <div class="card-footer">
-      <button type="submit" class="btn btn-dark">Ler voo</button>
-      {% if voo %}
-      <br>
-      <br>
-      <p>Código: {{ voo.code }}</p>
-      <p>Companhia:{{ voo.companhia.nome }}</p>
-      <p>Horario Previsto: {{ voo.horario_previsto }}</p>
-      <p>Data: {{ voo.data }}</p>
-      <p>Local: {{ voo.local }}</p>
-      {% endif %} 
-    </div>
-  </form>
-</div>
-
-</div>
-
-</div>
-{% else %}
-  {% include 'base/error.html' %}
-{% endif %}
 {% endblock body %}
