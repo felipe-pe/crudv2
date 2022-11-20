@@ -12,7 +12,7 @@ from voos.forms import CodigoForm
 from voos.models import voo
 from django.core.exceptions import MultipleObjectsReturned
 
-from voos.models import companhia, voo, partida, chegada
+from voos.models import aeroporto, companhia, voo, orq
 from django.utils import timezone
 from datetime import datetime
 

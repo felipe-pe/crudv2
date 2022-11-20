@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from voos.models import companhia, voo, partida, chegada
+from voos.models import aeroporto, companhia, voo, orq
 
 import datetime
 
