@@ -44,7 +44,7 @@
             <li class="nav-item">
               <a {% if request.resolver_match.view_name == 'status' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'status' %}">
                 <i class="fa-solid fa-rotate fa-xl"></i>
-                &nbsp;&nbsp;<p>Atualizar status </p>
+                &nbsp;&nbsp;<p>Status de voo</p> </p>
               </a>
             </li>
             <li class="nav-item">
@@ -54,7 +54,7 @@
                 
                  {% else %} class="nav-link" {% endif %} href="{% url 'gera_relatorio' %}">
                 &nbsp;<i class="fa-regular fa-file-lines fa-xl"></i>
-                &nbsp;&nbsp;&nbsp;<p>Gerar relatórios</p>
+                &nbsp;&nbsp;&nbsp;<p>Relatórios</p>
               </a>
             </li>
       </ul>
