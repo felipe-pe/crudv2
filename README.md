@@ -49,6 +49,6 @@ Felipe da Silva Pereira - 9276881
     ```
 
 
-7. Finalmente, para executar o sistema, acesse o link:
+7. Finalmente, para executar os sistema, acesse o link:
 
     http://localhost:8000/

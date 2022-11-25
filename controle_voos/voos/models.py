@@ -1,42 +1,54 @@
 from django.db import models
 
-# Create your models here.
-class aeroporto (models.Model) :
+class companhia(models.Model) :
+    id = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=200, null=False)
-    code =models.CharField(max_length=3, null=False)
-    class Meta:
-        db_table = 'aeroporto'
-
-class companhia (models.Model):
-    nome = models.CharField(max_length=200, null=False)
-    code = models.CharField(max_length=2, null=False)
-    class Meta:
-        db_table = 'companhia_aerea'
-
-class voo (models.Model):
     code = models.CharField(max_length=6, null=False)
-    origem = models.CharField(max_length=3, null=False)
-    destino = models.CharField(max_length=3, null=False)
+
+    class Meta:
+        db_table = 'companhia'
+
+class Voo(models.Model) :
+    id = models.IntegerField(primary_key=True)
+    code = models.CharField(max_length=6, blank=False, default='AAA111')
     companhia = models.ForeignKey(companhia, on_delete=models.CASCADE)
+    horario_previsto = models.TimeField(auto_now=False, auto_now_add=False)
+    local = models.CharField(max_length=200, null=False)
+    data = models.DateField('Date', blank=True, null=True)
+    
     class Meta:
         db_table = 'voo'
 
-class orq (models.Model):
-    status_ops = [
-        ('EM', 'Embarcando'),
-        ('CA', 'Cancelado'),
-        ('PR', 'Embarcando'),
-        ('TA', 'Taxeando'),
-        ('PO', 'Pronto'),
-        ('AU', 'Autorizado'),
-        ('VO', 'Em voo'),
-        ('AT', 'Aterrisado'),
+class partida(models.Model) :
+    choices = [
+        ('EMb', 'Embarcando'),
+        ('CAN', 'Cancelado'),
+        ('PRG', 'Programado'),
+        ('TAX', 'Taxeando'),
+        ('PRO', 'Pronto'),
+        ('AUT', 'Autorizado'),
+        ('VOO', 'Em voo'),
+    ]
+    id = models.IntegerField(primary_key=True)
+    voo = models.ForeignKey(Voo, on_delete=models.CASCADE)
+    real = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    status = models.CharField(max_length=3, choices=choices, default='EM')
+    data = models.DateField(auto_now=False, auto_now_add=False, null=True)
+
+    class Meta:
+        db_table = 'partida'
+
+class chegada(models.Model) :
+    choices = [
+        ('VO0', 'Em voo'),
+        ('ATR', 'Aterrisado'),
     ]
 
-    saida_prev = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    chegada_prev = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    saida_real = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    chegada_real = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    status = models.CharField(max_length=2, choices=status_ops, default='EM')
+    id = models.IntegerField(primary_key=True)
+    voo = models.ForeignKey(Voo, on_delete=models.CASCADE)
+    real = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    status = models.CharField(max_length=3, choices=choices, default='VO')
+    data = models.DateField(auto_now=False, auto_now_add=False, null=False)
+
     class Meta:
-        db_table = 'orq'
+        db_table = 'chegada'
