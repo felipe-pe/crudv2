@@ -1,17 +1,28 @@
 {% load static %}
- 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
 
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}" role="button">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
+<!-- Navbar Light -->
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white z-index-3 py-3">
+  <div class="container">
+    <a class="navbar-brand" href="" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+      CONTROLE DE VOOS
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-auto">
+        <div class="row">
+          <div class="col-auto m-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" role="button">
+              <i class="fa-solid fa-sign-out fixed-plugin-button-nav"></i>
+            </a>
+          </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
